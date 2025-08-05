@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-grid slds-gutters slds-m-bottom_medium">
+        <div class="slds-col slds-size_1-of-12 slds-text-align_center">
+            <lightning-icon icon-name="utility:check" alternative-text="Recommendation" size="large"></lightning-icon>
+        </div>
+        <div class="slds-col slds-size_7-of-12">
+            <p><strong>DoR Criteria:</strong> {criteria}</p>
+            <p><strong>DoR Criteria Analysis:</strong> {analysis}</p>
+            <p><strong>Recommended Action:</strong> {action}</p>
+        </div>
+        <div class="slds-col slds-size_4-of-12">
+            <lightning-radio-group   name="status"
+                                    label="Status"
+                                    options={statusOptions}
+                                    value={value}
+                                    type="button"></lightning-radio-group>
+        </div>
+    </div>
+</template>

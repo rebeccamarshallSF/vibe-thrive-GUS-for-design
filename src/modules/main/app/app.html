@@ -1,0 +1,76 @@
+<template>
+    <div class="epic-readiness-check">
+        <!-- Page Header -->
+        <header class="slds-page-header slds-page-header_record-home">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:epic" alternative-text="Epic" title="Epic"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate" title="Epic">Epic</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <h2 class="slds-page-header__title slds-text-heading_large">24/7 Resource Availability</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <lightning-card>
+            <lightning-tabset active-tab-value="readiness">
+                <lightning-tab label="Related" value="related">
+                    <!-- Related Content Goes Here -->
+                </lightning-tab>
+                <lightning-tab label="Details" value="details">
+                    <!-- Details Content Goes Here -->
+                </lightning-tab>
+                <lightning-tab label="Security" value="security">
+                    <!-- Security Content Goes Here -->
+                </lightning-tab>
+                <lightning-tab label="Quip" value="quip">
+                    <!-- Quip Content Goes Here -->
+                </lightning-tab>
+                <lightning-tab label="Readiness" value="readiness">
+                    <div class="slds-p-around_medium">
+                        <!-- Welcome Banner -->
+                        <div class="slds-box slds-theme_inverse slds-m-bottom_medium">
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <div class="slds-col">
+                                    <h2 class="slds-text-heading_medium">Welcome to the Epic Readiness Check!</h2>
+                                </div>
+                                <div class="slds-col slds-text-align_right">
+                                    <lightning-button label="Learn More" variant="neutral"></lightning-button>
+                                    <lightning-button label="Draft Epics from PRD" variant="brand" class="slds-m-left_small"></lightning-button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Accordion -->
+                        <lightning-accordion active-section-name={activeSections}>
+                            <lightning-accordion-section name="epic-details" label="Epic Details">
+                                <p>Epic details will be shown here.</p>
+                            </lightning-accordion-section>
+                            <lightning-accordion-section name="reviewable-recommendations" label="Reviewable Recommendations">
+                                <template for:each={recommendations} for:item="rec">
+                                    <main-recommendation-item key={rec.id}
+                                                               criteria={rec.criteria}
+                                                               analysis={rec.analysis}
+                                                               action={rec.action}>
+                                    </main-recommendation-item>
+                                </template>
+                            </lightning-accordion-section>
+                        </lightning-accordion>
+                    </div>
+                </lightning-tab>
+            </lightning-tabset>
+        </lightning-card>
+    </div>
+</template>
