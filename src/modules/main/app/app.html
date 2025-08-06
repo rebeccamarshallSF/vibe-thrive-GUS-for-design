@@ -59,13 +59,23 @@
                                 <p>Epic details will be shown here.</p>
                             </lightning-accordion-section>
                             <lightning-accordion-section name="reviewable-recommendations" label="Reviewable Recommendations">
-                                <template for:each={recommendations} for:item="rec">
-                                    <main-recommendation-item key={rec.id}
-                                                               criteria={rec.criteria}
-                                                               analysis={rec.analysis}
-                                                               action={rec.action}>
-                                    </main-recommendation-item>
-                                </template>
+                                <lightning-tabset>
+                                    <lightning-tab label="ENG">
+                                        <template for:each={recommendations} for:item="rec">
+                                            <main-recommendation-item key={rec.id}
+                                                                       criteria={rec.criteria}
+                                                                       analysis={rec.analysis}
+                                                                       action={rec.action}>
+                                            </main-recommendation-item>
+                                        </template>
+                                    </lightning-tab>
+                                    <lightning-tab label="UX">
+                                        <p>UX recommendations will be shown here.</p>
+                                    </lightning-tab>
+                                    <lightning-tab label="CX">
+                                        <p>CX recommendations will be shown here.</p>
+                                    </lightning-tab>
+                                </lightning-tabset>
                             </lightning-accordion-section>
                         </lightning-accordion>
                     </div>
