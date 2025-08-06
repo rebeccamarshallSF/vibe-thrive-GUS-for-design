@@ -1,0 +1,13 @@
+.slds-radio_button-group .slds-radio_button {
+    flex-grow: 1;
+}
+
+.slds-radio_button-group .slds-radio_button:first-child .slds-radio_button__label {
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+}
+
+.slds-radio_button-group .slds-radio_button:last-child .slds-radio_button__label {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
