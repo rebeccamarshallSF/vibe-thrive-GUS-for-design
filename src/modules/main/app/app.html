@@ -1,80 +1,139 @@
 <template>
     <div class="epic-readiness-check">
-        <!-- Page Header -->
         <header class="slds-page-header slds-page-header_record-home">
             <div class="slds-page-header__row">
                 <div class="slds-page-header__col-title">
                     <div class="slds-media">
                         <div class="slds-media__figure">
-                            <lightning-icon icon-name="standard:epic" alternative-text="Epic" title="Epic"></lightning-icon>
+                            <!-- This uses a direct SVG reference, which is guaranteed to work. -->
+                            <span class="slds-icon_container slds-icon-standard-case icon-container-blue-background">
+                                <svg class="slds-icon slds-icon_medium" aria-hidden="true">
+                                    <use xlink:href="/public/slds/icons/standard-sprite/svg/symbols.svg#case"></use>
+                                </svg>
+                            </span>
                         </div>
                         <div class="slds-media__body">
                             <div class="slds-page-header__name">
-                                <div class="slds-page-header__name-title">
-                                    <h1>
-                                        <span class="slds-page-header__title slds-truncate" title="Epic">Epic</span>
-                                    </h1>
-                                </div>
+                                <div class="slds-page-header__name-title"><h1><span class="slds-page-header__title slds-truncate epic-title-small" title="Epic">Epic</span></h1></div>
                             </div>
-                            <h2 class="slds-page-header__title slds-text-heading_large">24/7 Resource Availability</h2>
+                            <h2 class="slds-page-header__title slds-truncate epic-title-large">Agentforce for Setup: Enhance Permission Set and Permission Set...</h2>
                         </div>
                     </div>
                 </div>
+                <div class="slds-page-header__col-actions">
+                    <div class="slds-button-group" role="group">
+                        <lightning-button label="Follow" icon-name="utility:add"></lightning-button>
+                        <lightning-button label="Create Work"></lightning-button>
+                        <lightning-button label="Edit"></lightning-button>
+                        <lightning-button label="Clone"></lightning-button>
+                        <lightning-button-menu alternative-text="More Actions" icon-size="x-small"></lightning-button-menu>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__row slds-page-header__row_gutters">
+                 <div class="slds-page-header__col-details"></div>
+                 <div class="slds-page-header__col-controls">
+                     <div class="slack-notification-icon" onclick={openSlackNotification} title="View Slack Notification">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" alt="Slack Logo" class="slack-logo-img">
+                        <div class="notification-badge">1</div>
+                    </div>
+                 </div>
             </div>
         </header>
 
-        <!-- Main Content -->
         <lightning-card>
             <lightning-tabset active-tab-value="readiness">
-                <lightning-tab label="Related" value="related">
-                    <!-- Related Content Goes Here -->
-                </lightning-tab>
-                <lightning-tab label="Details" value="details">
-                    <!-- Details Content Goes Here -->
-                </lightning-tab>
-                <lightning-tab label="Security" value="security">
-                    <!-- Security Content Goes Here -->
-                </lightning-tab>
-                <lightning-tab label="Quip" value="quip">
-                    <!-- Quip Content Goes Here -->
-                </lightning-tab>
+                <lightning-tab label="Related" value="related"></lightning-tab>
+                <lightning-tab label="Details" value="details"></lightning-tab>
+                <lightning-tab label="Security" value="security"></lightning-tab>
+                <lightning-tab label="Quip" value="quip"></lightning-tab>
                 <lightning-tab label="Readiness" value="readiness">
                     <div class="slds-p-around_medium">
-                        <!-- Welcome Banner -->
-                        <div class="slds-box slds-theme_inverse slds-m-bottom_medium">
-                            <div class="slds-grid slds-grid_vertical-align-center">
-                                <div class="slds-col">
-                                    <h2 class="slds-text-heading_medium">Welcome to the Epic Readiness Check!</h2>
-                                </div>
-                                <div class="slds-col slds-text-align_right">
-                                    <lightning-button label="Learn More" variant="neutral"></lightning-button>
-                                    <lightning-button label="Draft Epics from PRD" variant="brand" class="slds-m-left_small"></lightning-button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Accordion -->
-                        <lightning-accordion active-section-name={activeSections}>
+                        <lightning-accordion onsectiontoggle={handleSectionToggle} active-section-name={activeSections} allow-multiple-sections-open>
                             <lightning-accordion-section name="epic-details" label="Epic Details">
-                                <p>Epic details will be shown here.</p>
+                                <div class="slds-p-around_medium">
+                                    <p><strong>Epic Title</strong></p>
+                                    <p>Agentforce for Setup: Enhance Permission Set and Permission Set Group Management</p>
+                                    <br/>
+                                    <p><strong>Epic Description</strong></p>
+                                    <p>We are creating a user-friendly, conversational interface for managing Salesforce permission sets and permission set groups. The goal is to streamline admin workflows and boost productivity.</p>
+                                    <br/>
+                                    <p><strong>Problem Statement</strong></p>
+                                    <p>Salesforce administrators currently face time-consuming, error-prone, and complex manual processes for managing permissions. This leads to increased overhead, security risks from misconfigurations, a steep learning curve for new admins, and delayed deployments.</p>
+                                    <br/>
+                                    <p><strong>Desired User Outcome</strong></p>
+                                    <p>Administrators will efficiently and accurately manage Salesforce permissions using natural language, significantly reducing effort and improving security, onboarding, and overall satisfaction.</p>
+                                    <br/>
+                                    <p><strong>Jobs to Be Done (JTBD)</strong></p>
+                                    <ul>
+                                        <li>Quickly define and assign permissions for new users or groups.</li>
+                                        <li>Easily update existing user access due to role changes or new features.</li>
+                                        <li>Organize related permission sets into groups for collective management.</li>
+                                        <li>Visually review and confirm changes before application.</li>
+                                    </ul>
+                                    <br/>
+                                    <p><strong>Personas</strong></p>
+                                    <ul>
+                                        <li>System Administrator (Primary): Needs speed, accuracy, and ease of use for complex permission scenarios.</li>
+                                        <li>Junior Administrator/Support Staff (Secondary): Needs intuitive guidance and simplified workflows.</li>
+                                    </ul>
+                                    <br/>
+                                    <p><strong>Functional Requirements</strong></p>
+                                    <ul>
+                                        <li>Natural Language Permission Set Generation: Admins describe permissions in natural language; Agentforce generates and previews the permission set for review.
+                                            <ul class="slds-p-left_medium" style="list-style-type: none;"><li><em>Example Utterance: "Create a permission set for Sales Reps that grants read access to Accounts and Opportunities, and edit access to Contacts' Phone and Email fields."</em></li></ul>
+                                        </li>
+                                        <li>Natural Language Permission Set Update: Admins update existing permission sets using natural language commands; Agentforce previews changes for confirmation.
+                                            <ul class="slds-p-left_medium" style="list-style-type: none;"><li><em>Example Utterance: "Add delete access to Leads for the 'Sales Rep' permission set."</em></li></ul>
+                                        </li>
+                                        <li>Permission Set Metadata Editing: Admins can easily edit permission set descriptions and other metadata.</li>
+                                        <li>Permission Set Group Management: Admins can efficiently add/remove permission sets from groups.
+                                            <ul class="slds-p-left_medium" style="list-style-type: none;"><li><em>Example Utterance: "Add 'Sales Rep Access' to the 'Sales Department Group'."</em></li></ul>
+                                        </li>
+                                        <li>UI Rendition for Admin Approval: A clear interface for admins to review and approve/reject proposed changes from Agentforce.</li>
+                                        <li>UI Rendition of Confirmation: Clear confirmation messages after successful operations.</li>
+                                    </ul>
+                                    <br/>
+                                    <p><strong>Non-Functional Requirements</strong></p>
+                                    <ul>
+                                        <li>Performance: Near real-time NLP processing (&lt; 2 seconds).</li>
+                                        <li>Accuracy: >95% accurate interpretation of commands.</li>
+                                        <li>Security: Adherence to Salesforce security model.</li>
+                                        <li>Scalability: Handles large volumes without degradation.</li>
+                                        <li>Usability: Intuitive and low cognitive load UI.</li>
+                                        <li>Accessibility: WCAG 2.1 AA compliant.</li>
+                                        <li>Maintainability: Modular, well-documented code.</li>
+                                        <li>Error Handling: Clear, actionable error messages.</li>
+                                    </ul>
+                                    <br/>
+                                    <p><strong>Key Date Milestones</strong></p>
+                                    <ul>
+                                        <li>Q2 2025: Kickoff, UI design complete, Internal Alpha for Generation.</li>
+                                        <li>Q3 2025: Agentforce for Setup MVP Pilot, Internal Alpha for Update, Beta release with core generation/update.</li>
+                                        <li>Q4 2025: General Availability (GA) of Agentforce for Setup: Permission Set and Permission Set Group Management.</li>
+                                    </ul>
+                                    <br/>
+                                    <p><strong>Customer Feedback</strong></p>
+                                    <p>Admins express a strong need for:</p>
+                                    <ul>
+                                        <li>Faster new user setup ("If I could just tell Salesforce what they need...")</li>
+                                        <li>Clear previews to prevent errors ("A clear preview would be amazing.")</li>
+                                        <li>Easier bulk updates for field-level security ("Updating field-level security... is a nightmare.")</li>
+                                        <li>Simplified metadata editing ("Sometimes I just need to change the description... but it's buried.")</li>
+                                    </ul>
+                                </div>
                             </lightning-accordion-section>
                             <lightning-accordion-section name="reviewable-recommendations" label="Reviewable Recommendations">
-                                <lightning-tabset>
-                                    <lightning-tab label="ENG">
-                                        <template for:each={recommendations} for:item="rec">
-                                            <main-recommendation-item key={rec.id}
-                                                                       criteria={rec.criteria}
-                                                                       analysis={rec.analysis}
-                                                                       action={rec.action}>
-                                            </main-recommendation-item>
-                                        </template>
+                                <lightning-tabset active-tab-value="ux">
+                                    <lightning-tab label="ENG" value="eng"><p>ENG recommendations will be shown here.</p></lightning-tab>
+                                    <lightning-tab label="UX" value="ux">
+                                        <div class="slds-box slds-p-around_medium">
+                                            <template for:each={readinessChecks} for:item="check">
+                                                <main-readiness-item key={check.id} criteria={check.criteria} analysis={check.analysis} action={check.action}></main-readiness-item>
+                                            </template>
+                                        </div>
                                     </lightning-tab>
-                                    <lightning-tab label="UX">
-                                        <p>UX recommendations will be shown here.</p>
-                                    </lightning-tab>
-                                    <lightning-tab label="CX">
-                                        <p>CX recommendations will be shown here.</p>
-                                    </lightning-tab>
+                                    <lightning-tab label="CX" value="cx"><p>CX recommendations will be shown here.</p></lightning-tab>
                                 </lightning-tabset>
                             </lightning-accordion-section>
                         </lightning-accordion>

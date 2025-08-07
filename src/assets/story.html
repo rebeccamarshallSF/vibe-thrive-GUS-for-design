@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UX Story - WI-12345679</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f3f2f2; color: #3e3e3c; }
+        
+        /* Salesforce Header Styles */
+        .sf-header { background-color: #fff; border-bottom: 1px solid #dddbda; display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 1rem; }
+        .sf-header-left, .sf-header-right { display: flex; align-items: center; gap: 1rem; }
+        .sf-logo { width: 48px; height: 32px; background-color: #009ddc; border-radius: 4px; }
+        .sf-app-launcher { width: 32px; height: 32px; background-color: #f3f2f2; border-radius: 4px; }
+        .sf-app-name { font-weight: bold; font-size: 18px; }
+        .sf-nav a { text-decoration: none; color: #3e3e3c; padding: 8px 12px; font-weight: 500; }
+        .sf-nav a.active { border-bottom: 2px solid #0176d3; color: #0176d3; }
+        .sf-search-bar { width: 200px; height: 32px; background-color: #f3f2f2; border-radius: 4px; }
+        .sf-icon-group { width: 120px; height: 32px; background-color: #f3f2f2; border-radius: 4px; }
+        .sf-profile-pic { width: 32px; height: 32px; background-color: #f3f2f2; border-radius: 50%; }
+
+        /* Page Styles */
+        .container { display: flex; padding: 24px; gap: 24px; }
+        .main-column { flex: 3; }
+        .sidebar-column { flex: 1; }
+        .card { background-color: #fff; border: 1px solid #dddbda; border-radius: .25rem; margin-bottom: 1rem; }
+        .story-header { padding: 1.5rem; }
+        .header-title { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+        .header-icon { width: 48px; height: 48px; background-color: #0176d3; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+        .header-text h1 { font-size: 14px; color: #616061; margin: 0; }
+        .header-text h2 { font-size: 24px; font-weight: 600; color: #080707; margin: 0; }
+        .header-details { display: flex; justify-content: space-between; padding-top: 1rem; border-top: 1px solid #dddbda; }
+        .detail-item { display: flex; flex-direction: column; }
+        .detail-item .label { font-size: 12px; color: #616061; margin-bottom: 4px; }
+        .detail-item .value { font-size: 14px; font-weight: 500; }
+        .story-body { padding: 1.5rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem 2rem; }
+        .form-field { border-bottom: 1px solid #dddbda; padding-bottom: 8px; min-height: 38px; }
+        .form-field label { font-size: 12px; color: #616061; }
+        .form-field div { font-size: 14px; padding-top: 4px; }
+        .form-field.full-width { grid-column: 1 / -1; }
+        .required::after { content: '*'; color: #c23934; margin-left: 2px; }
+        .sidebar-card { padding: 1rem; }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .sidebar-title { font-size: 16px; font-weight: 700; }
+        .sidebar-card button { font-size: 14px; padding: 4px 12px; border-radius: 4px; border: 1px solid #dddbda; background-color: #fff; cursor: pointer; }
+        .search-box { display: flex; border: 1px solid #0176d3; border-radius: 4px; padding: 8px; }
+        .search-box input { border: none; outline: none; flex-grow: 1; }
+        .tabs { display: flex; border-bottom: 1px solid #dddbda; margin-top: 1rem; }
+        .tabs a { text-decoration: none; color: #616061; padding: 8px 16px; font-weight: 500; }
+        .tabs a.active { color: #080707; border-bottom: 2px solid #0176d3; }
+
+        /* Truncation Class */
+        .truncate-3-lines {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <header class="sf-header">
+        <div class="sf-header-left">
+            <div class="sf-logo"></div>
+            <div class="sf-app-launcher"></div>
+            <span class="sf-app-name">GUS</span>
+            <nav class="sf-nav">
+                <a href="#">Home</a>
+                <a href="#">Blocks and Throttles</a>
+                <a href="#">Chatter</a>
+                <a href="#">Groups</a>
+                <a href="#">Work</a>
+                <a href="#">My Teams</a>
+                <a href="#">Work Backlog</a>
+                <a href="#" class="active">Epics</a>
+                <a href="#">More</a>
+            </nav>
+        </div>
+        <div class="sf-header-right">
+            <div class="sf-search-bar"></div>
+            <div class="sf-icon-group"></div>
+            <div class="sf-profile-pic"></div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-column">
+            <div class="card">
+                <header class="story-header">
+                    <div class="header-title">
+                        <div class="header-icon">
+                            <!-- Placeholder for SLDS icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 52 52" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M26 0C11.641 0 0 11.641 0 26s11.641 26 26 26 26-11.641 26-26S40.359 0 26 0z" fill="white"/>
+                                <path fill="#0070d2" d="M26 2C12.745 2 2 12.745 2 26s10.745 24 24 24 24-10.745 24-24S39.255 2 26 2z"/>
+                                <path fill="white" d="M26 12c-7.732 0-14 6.268-14 14s6.268 14 14 14 14-6.268 14-14-6.268-14-14-14zm0 24c-5.523 0-10-4.477-10-10s4.477-10 10-10 10 4.477 10 10-4.477 10-10 10z"/>
+                            </svg>
+                        </div>
+                        <div class="header-text">
+                            <h1>UX Story</h1>
+                            <h2>As an admin, I can visually review and confirm changes to Permsets before application.</h2>
+                        </div>
+                    </div>
+                    <div class="header-details">
+                        <div class="detail-item"><span class="label">Story ID</span><span class="value">WI-12345679</span></div>
+                        <div class="detail-item"><span class="label">Status</span><span class="value">New</span></div>
+                        <div class="detail-item"><span class="label">Record Type</span><span class="value">UX Story</span></div>
+                        <div class="detail-item"><span class="label">Age with Team</span><span class="value">2 days</span></div>
+                        <div class="detail-item"><span class="label">Team</span><span class="value">Dev_Collab</span></div>
+                        <div class="detail-item"><span class="label">Release</span><span class="value">260</span></div>
+                        <div class="detail-item"><span class="label">Assignee</span><span class="value">Ron Hemphill</span></div>
+                    </div>
+                </header>
+                <div class="story-body">
+                    <div class="form-grid">
+                        <div class="form-field full-width"><label class="required">Subject</label><div>Lorem ipsum dolor sit amet</div></div>
+                        <div class="form-field full-width"><label class="required">Description</label><div>Lorem ipsum dolor sit amet dolor sit amet dolor sit amet</div></div>
+                        <div class="form-field"><label class="required">Product Tag</label><div>Agentic Setup</div></div>
+                        <div class="form-field"><label class="required">Design Lead</label><div>Ron Hemphill</div></div>
+                        <div class="form-field"><label>Status</label><div>New</div></div>
+                        <div class="form-field"><label>Team</label><div>Awesome Agentic Setup</div></div>
+                        <div class="form-field"><label>T-Shirt Size</label><div>M</div></div>
+                        <div class="form-field"><label>UX Story Owner</label><div>Ron Hemphill</div></div>
+                        <div class="form-field"><label>Release</label><div>262</div></div>
+                        <div class="form-field"><label>Scheduled Build</label></div>
+                        <div class="form-field">
+                            <label>Epic</label>
+                            <div class="truncate-3-lines">
+                                Agentforce for Setup: Enhance Permission Set and Permission Set Group Management
+                                <br>
+                                We are creating a user-friendly, conversational interface for managing Salesforce permission sets and permission set groups. The goal is to streamline admin workflows and boost productivity.
+                            </div>
+                        </div>
+                        <div class="form-field"><label>Project Context</label></div>
+                        <div class="form-field"><label>Design Due Date</label></div>
+                        <div class="form-field"><label>Engineering POC</label><div>Srini Tallapragada</div></div>
+                        <div class="form-field"><label>Project Phase</label><div>Ideation</div></div>
+                        <div class="form-field"><label>Product POC</label><div>Beryl Weldman</div></div>
+                        <div class="form-field"><label>Files</label><div>FIGJAMS</div></div>
+                        <div class="form-field"><label>Links</label><div>PRD LINK</div></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="sidebar-column">
+            <div class="card sidebar-card">
+                <h2 class="sidebar-title">Collaborate in Slack</h2>
+            </div>
+            <div class="card sidebar-card">
+                <div class="sidebar-header">
+                    <h2 class="sidebar-title">Themes</h2>
+                    <button>New</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Search Themes">
+                    <span>🔍</span>
+                </div>
+            </div>
+             <div class="card sidebar-card">
+                <nav class="tabs">
+                    <a href="#" class="active">Feed</a>
+                    <a href="#">Related</a>
+                    <a href="#">AC</a>
+                    <a href="#">Followers</a>
+                </nav>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>

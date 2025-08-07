@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slack - Ron's Notification</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; background: #fff; }
+        .slack-sidebar { width: 260px; background: #3f0e40; color: white; padding: 16px; display: flex; flex-direction: column; }
+        .slack-workspace { font-size: 18px; font-weight: 900; margin-bottom: 20px; }
+        .slack-nav-item { padding: 4px 12px; margin: 2px 0; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; color: rgb(209, 210, 211); } 
+        .slack-nav-active { background: #1264a3; color: white; }
+        .channels-header { font-size: 15px; font-weight: bold; color: rgb(209, 210, 211); padding: 4px 12px; margin-top: 20px; margin-bottom: 4px; }
+        .slack-main { flex: 1; display: flex; flex-direction: column; }
+        .slack-header { padding: 12px 24px; border-bottom: 1px solid #e1e5e9; display: flex; justify-content: space-between; align-items: center; }
+        .header-title { font-size: 18px; font-weight: 900; }
+        .slack-message-area { flex: 1; padding: 16px 24px; } 
+        .message-header { display: flex; align-items: center; margin-bottom: 8px; }
+        .bot-icon { width: 36px; height: 36px; background: url(https://a.slack-edge.com/80588/img/apps/gus_200.png) center/cover; border-radius: 8px; }
+        .bot-name { font-weight: 900; font-size: 15px; margin-right: 8px; } 
+        .message-time { color: #616061; font-size: 12px; }
+        .message-content p { font-size: 15px; color: #1d1c1d; margin-bottom: 12px; }
+        .epic-card { border: 1px solid #ddd; border-left: 4px solid #0176d3; border-radius: 8px; padding: 16px; background: #f8f9fa; max-width: 600px; }
+        .epic-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .epic-icon { width: 36px; height: 36px; background: #0176d3; border-radius: 4px; }
+        .view-details-btn { color: #1264a3; font-size: 15px; background: none; border: none; text-decoration: none; cursor: pointer; font-weight: bold; }
+        .view-details-btn:hover { text-decoration: underline; }
+        .epic-table { display: grid; grid-template-columns: 130px 1fr; gap: 12px; font-size: 15px; } 
+        .epic-table-label { color: #616061; } 
+        .owner-info { display: flex; align-items: center; gap: 8px; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; background: white; }
+        .owner-avatar { width: 20px; height: 20px; border-radius: 4px; background: center/cover; }
+        .action-buttons { margin-top: 16px; display: flex; gap: 8px; }
+        .action-btn { padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; border: none; }
+        .primary { background: #0176d3; color: white; } .secondary { background: #f3f3f3; color: #333; border: 1px solid #ddd; }
+        .slack-input { border-top: 1px solid #e1e5e9; padding: 20px 24px; }
+        .message-input-box { border: 1px solid #ccc; border-radius: 8px; padding: 12px; color: #616061; }
+    </style>
+</head>
+<body>
+    <div class="slack-sidebar">
+        <div class="slack-workspace">Vibe & Thrive</div>
+        <div class="slack-nav-item">💬 Threads</div>
+        <div class="slack-nav-item">📫 All DMs</div>
+        <div class="slack-nav-item slack-nav-active">🔔 Mentions & reactions</div>
+        <div class="slack-nav-item">Saved items</div>
+        <div class="channels-header">▼ Channels</div>
+        <div class="slack-nav-item"># teamAwesome</div>
+        <div class="slack-nav-item"># Dev_Collab</div>
+        <div class="slack-nav-item"># core_smarts</div>
+        <div class="slack-nav-item"># GUS BUS</div>
+    </div>
+    <div class="slack-main">
+        <div class="slack-header"> <div class="header-title">Mentions and Reactions</div> </div>
+        <div class="slack-message-area">
+            <div class="message-header"> <div class="bot-icon"></div> <span class="bot-name">Gus on Slack</span> <span class="message-time">10:05 AM</span> </div>
+            <div class="message-content"> <p>Hello Ron! You have been assigned as Design Lead of the following Epic</p>
+            <div class="epic-card"> <div class="epic-header"> <div class="epic-icon"></div> <button class="view-details-btn">View Details in Salesforce</button> </div>
+            <div class="epic-table">
+                <div class="epic-table-label">Epic Name:</div> <div>Generate and Update Perm Sets</div>
+                <div class="epic-table-label">Status:</div> <div>New</div>
+                <div class="epic-table-label">Owner:</div> <div class="owner-info"> <div class="owner-avatar" style="background-image: url(https://ca.slack-edge.com/T024F43P6-U024F43P9-g24f43p6u8a2-512);"></div> <span>Carolina de Mello e Souza</span> </div>
+                <div class="epic-table-label">Planned Release:</div> <div>260</div>
+                <div class="epic-table-label">Product Tag:</div> <div>User Access Management</div>
+                <div class="epic-table-label">Due date:</div> <div>11/05/25</div>
+                <div class="epic-table-label">Design Lead:</div> <div class="owner-info"> <div class="owner-avatar" style="background-image: url(https://ca.slack-edge.com/T024F43P6-U024F43P9-g24f43p6u8a2-512);"></div> <span>Ron Hemphill</span> </div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="alert('Opening GUS view...')">View in GUS</button>
+                <button class="action-btn secondary" onclick="alert('Assignment rejected!')">Reject Assignment</button>
+                <button class="action-btn secondary" onclick="alert('Huddle requested!')">Huddle with PM & Eng Leads</button>
+            </div> </div> </div> </div>
+        <div class="slack-input"> <div class="message-input-box">Jot something down</div> </div> </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const header = document.querySelector('.slack-header');
+                const logoContainer = document.createElement('div');
+                logoContainer.className = 'slack-logo-container';
+                logoContainer.innerHTML = `
+                    <style>
+                        .slack-logo-container { position: relative; }
+                        .slack-logo-img { width: 28px; height: 28px; }
+                    </style>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" alt="Slack Logo" class="slack-logo-img">
+                `;
+                header.appendChild(logoContainer);
+        
+                // Find all action buttons and add the GUS link
+                const gusButtons = document.querySelectorAll('.action-btn.primary, .view-details-btn');
+                gusButtons.forEach(function(button) {
+                    button.onclick = function() {
+                        window.open('/public/assets/gus.html', '_self');
+                    };
+                });
+            });
+        </script>
+    </body>
+</html>

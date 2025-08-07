@@ -3,15 +3,43 @@
     border-bottom: 1px solid #dddbda;
 }
 
-.epic-readiness-check .slds-page-header__title {
-    font-size: 1.25rem;
+.slack-notification-icon {
+    display: none;
 }
 
-.slds-theme_inverse {
-    background-color: #0070d2;
-    color: white;
+.slack-logo-img {
+    width: 28px;
+    height: 28px;
 }
 
-.slds-theme_inverse .slds-text-heading_medium {
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4757;
     color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+/* This new class ensures the icon has the blue background */
+.icon-container-blue-background {
+    background-color: #0176d3; /* Salesforce Blue */
+    border-radius: .25rem;
+    padding: 0.25rem;
+}
+
+.epic-title-small {
+    font-size: 0.875rem; /* Half the size of the large title */
+}
+
+.epic-title-large {
+    font-size: 1.125rem; /* Smaller description line */
 }

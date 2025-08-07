@@ -1,0 +1,118 @@
+<template>
+    <div class="slack-container">
+        <!-- Slack Sidebar -->
+        <div class="slack-sidebar">
+            <div class="slack-nav-section">
+                <div class="slack-nav-item">
+                    <span>🧵 Threads</span>
+                </div>
+                <div class="slack-nav-item">
+                    <span>📧 All DMs</span>
+                </div>
+                <div class="slack-nav-item slack-nav-active">
+                    <span>🔔 Mentions & reactions</span>
+                </div>
+                <div class="slack-nav-item">
+                    <span>🔖 Saved items</span>
+                </div>
+                <div class="slack-nav-item">
+                    <span>⚡ More</span>
+                </div>
+            </div>
+            
+            <div class="slack-channels-section">
+                <h3>📁 Channels</h3>
+                <div class="slack-channel"># teamAwesome</div>
+                <div class="slack-channel"># Dev_Collab</div>
+                <div class="slack-channel"># core_smarts</div>
+                <div class="slack-channel">🔒 whole-listic quorum</div>
+                <div class="slack-channel"># GUS BUS</div>
+                <div class="slack-channel"># the CRUX</div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="slack-main">
+            <div class="slack-header">
+                <h2>Mentions and Reactions</h2>
+            </div>
+            
+            <div class="slack-message">
+                <div class="message-header">
+                    <div class="bot-avatar">
+                        <div class="bot-icon">G</div>
+                    </div>
+                    <div class="message-info">
+                        <span class="bot-name">Gus on Slack</span>
+                        <span class="message-time">10:05 AM</span>
+                    </div>
+                </div>
+                
+                <div class="message-content">
+                    <p>Hello Carolina! You have been assigned as Owner of the following Epic</p>
+                    
+                    <div class="epic-card">
+                        <div class="epic-header">
+                            <div class="epic-icon"></div>
+                            <lightning-button label="View Details in Salesforce" variant="base" class="view-details-btn"></lightning-button>
+                        </div>
+                        
+                        <div class="epic-details">
+                            <div class="epic-row">
+                                <span class="epic-label">Epic Name:</span>
+                                <span class="epic-value">{epicData.name}</span>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Status:</span>
+                                <span class="epic-value">{epicData.status}</span>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Owner</span>
+                                <div class="owner-info">
+                                    <div class="owner-avatar"></div>
+                                    <span>{epicData.owner}</span>
+                                    <span class="dropdown-arrow">▼</span>
+                                </div>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Planned Release</span>
+                                <span class="epic-value">{epicData.plannedRelease}</span>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Product Tag</span>
+                                <span class="epic-value">{epicData.productTag}</span>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Due date</span>
+                                <span class="epic-value">{epicData.dueDate}</span>
+                            </div>
+                            
+                            <div class="epic-row">
+                                <span class="epic-label">Design Lead</span>
+                                <div class="design-lead-dropdown">
+                                    <div class="unassigned-user">
+                                        <div class="user-icon"></div>
+                                        <span>Unassigned</span>
+                                        <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Message Input -->
+            <div class="slack-input">
+                <div class="message-input-box">
+                    <span class="placeholder-text">Jot something down</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</template> 

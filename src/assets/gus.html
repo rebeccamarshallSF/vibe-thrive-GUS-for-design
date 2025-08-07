@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salesforce - AI Suggested UX Stories</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f3f2f2; }
+        
+        /* New Salesforce Header Styles */
+        .sf-header { background-color: #fff; border-bottom: 1px solid #dddbda; display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 1rem; }
+        .sf-header-left, .sf-header-right { display: flex; align-items: center; gap: 1rem; }
+        .sf-logo { width: 48px; height: 32px; background-color: #009ddc; border-radius: 4px; } /* Salesforce Cloud Logo Placeholder */
+        .sf-app-launcher { width: 32px; height: 32px; background-color: #f3f2f2; border-radius: 4px; } /* App Launcher Placeholder */
+        .sf-app-name { font-weight: bold; font-size: 18px; }
+        .sf-nav a { text-decoration: none; color: #3e3e3c; padding: 8px 12px; font-weight: 500; }
+        .sf-nav a.active { border-bottom: 2px solid #0176d3; color: #0176d3; }
+        .sf-search-bar { width: 200px; height: 32px; background-color: #f3f2f2; border-radius: 4px; }
+        .sf-icon-group { width: 120px; height: 32px; background-color: #f3f2f2; border-radius: 4px; }
+        .sf-profile-pic { width: 32px; height: 32px; background-color: #f3f2f2; border-radius: 50%; }
+    
+        /* Existing Page Styles */
+        .main-content { padding: 24px; max-width: 1200px; margin: auto; }
+        .card { background-color: #fff; border: 1px solid #dddbda; border-radius: .25rem; margin-bottom: 1rem; }
+        .card-header { padding: 1rem; border-bottom: 1px solid #dddbda; font-size: 16px; font-weight: 700; color: #3e3e3c; }
+        .card-body { padding: 1rem; }
+        .action-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+        .action-buttons button { background: #fff; border: 1px solid #dddbda; border-radius: .25rem; padding: 6px 12px; font-size: 14px; cursor: pointer; }
+        .action-buttons .selected { border-color: #0176d3; color: #0176d3; box-shadow: 0 0 0 1px #0176d3 inset; }
+        .stories-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .stories-header h2 { font-size: 18px; color: #080707; }
+        .story { border: 1px solid #dddbda; border-radius: .25rem; margin-bottom: 1rem; }
+        .story-summary { padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .story-summary .subject { font-weight: 700; color: #080707; }
+        .story-summary .subject a { color: #005fb2; text-decoration: none; }
+        .story-summary .arrow { font-size: 24px; cursor: pointer; }
+        .story-details { padding: 0 1rem 1rem; display: none; }
+        .story-details p { margin-bottom: .5rem; }
+    </style>
+</head>
+<body>
+    <header class="sf-header">
+        <div class="sf-header-left">
+            <div class="sf-logo"></div>
+            <div class="sf-app-launcher"></div>
+            <span class="sf-app-name">GUS</span>
+            <nav class="sf-nav">
+                <a href="#">Home</a>
+                <a href="#">Blocks and Throttles</a>
+                <a href="#">Chatter</a>
+                <a href="#">Groups</a>
+                <a href="#">Work</a>
+                <a href="#">My Teams</a>
+                <a href="#">Work Backlog</a>
+                <a href="#" class="active">Epics</a>
+                <a href="#">More</a>
+            </nav>
+        </div>
+        <div class="sf-header-right">
+            <div class="sf-search-bar"></div>
+            <div class="sf-icon-group"></div>
+            <div class="sf-profile-pic"></div>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="card">
+            <div class="card-header">AI Actions</div>
+            <div class="card-body">
+                <div class="action-buttons">
+                    <button>Summarize</button>
+                    <button>Enhance Description</button>
+                    <button>Check Readiness</button>
+                    <button>Generate Eng Stories</button>
+                    <button class="selected">Generate UX Stories</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="stories-header">
+                    <h2>AI Suggested UX Stories</h2>
+                    <div>
+                        <button>Deny All</button>
+                        <button class="primary">Accept All</button>
+                    </div>
+                </div>
+                <p>I can create 4 UX stories for this epic. You may accept, deny, or edit them below</p>
+            </div>
+            <div class="card-body">
+                <div class="story">
+                    <div class="story-summary">
+                        <div class="subject">Subject: <a>As a new user, I can quickly define and assign permissions for new users or groups.</a></div>
+                        <div class="arrow" onclick="toggleDetails(this)">›</div>
+                        <div> <button>Accept</button> <button>Deny</button> </div>
+                    </div>
+                    <div class="story-details"></div>
+                </div>
+                <div class="story">
+                    <div class="story-summary">
+                        <div class="subject">Subject: <a>As an admin, I can easily update existing user access due to role changes or new features.</a></div>
+                        <div class="arrow" onclick="toggleDetails(this)">›</div>
+                        <div> <button>Accept</button> <button>Deny</button> </div>
+                    </div>
+                    <div class="story-details"></div>
+                </div>
+                <div class="story">
+                    <div class="story-summary">
+                        <div class="subject">Subject: <a>As an admin, I can organize related permission sets into groups for collective management.</a></div>
+                        <div class="arrow" onclick="toggleDetails(this)">›</div>
+                        <div> <button>Accept</button> <button>Deny</button> </div>
+                    </div>
+                     <div class="story-details"></div>
+                </div>
+                <div class="story">
+                    <div class="story-summary">
+                        <div class="subject">Subject: <a>As an admin, I can visually review and confirm changes before application.</a></div>
+                        <div class="arrow" onclick="toggleDetails(this)">ˇ</div>
+                        <div> <button>Accept</button> <button>Deny</button> </div>
+                    </div>
+                    <div class="story-details" style="display: block;">
+                        <p><strong>Description:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor Lorem ipsum dolor</p>
+                        <p><strong>Product Tag:</strong> User Access Management</p>
+                        <p><strong>T-Shirt Size:</strong> M</p>
+                        <p><strong>Due Date:</strong> 11/5/2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggleDetails(element) {
+            const details = element.parentElement.nextElementSibling;
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                element.textContent = '›';
+            } else {
+                details.style.display = 'block';
+                element.textContent = 'ˇ';
+            }
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find the "Accept All" button
+            const acceptAllButton = document.querySelector('.stories-header .primary');
+            
+            // Add the click event to open the story page
+            if (acceptAllButton) {
+                acceptAllButton.onclick = function() {
+                    // Opens the detailed story view in the same window
+                    window.open('/public/assets/story.html', '_self');
+                };
+            }
+        });
+    </script>
+</body>
+</html>

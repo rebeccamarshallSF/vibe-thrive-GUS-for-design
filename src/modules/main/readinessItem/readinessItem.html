@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-grid slds-gutters slds-p-vertical_medium slds-border_bottom">
+        <div class="slds-col slds-size_1-of-12 slds-text-align_center slds-m-top_large">
+            <lightning-icon icon-name="utility:check" size="small"></lightning-icon>
+        </div>
+        <div class="slds-col slds-size_8-of-12">
+            <p><strong>DoR Criteria:</strong> {criteria}</p>
+            <p><strong>DoR Criteria Analysis:</strong> {analysis}</p>
+            <p><strong>Recommended Action:</strong> {action}</p>
+        </div>
+        <div class="slds-col slds-size_3-of-12">
+            <p class="slds-text-body_small">*Status</p>
+            <lightning-button-group>
+                <lightning-button
+                    label="Addressed"
+                    variant={addressedVariant}
+                    onclick={handleStatusClick}>
+                </lightning-button>
+                <lightning-button
+                    label="Rejected"
+                    variant={rejectedVariant}
+                    onclick={handleStatusClick}>
+                </lightning-button>
+                <lightning-button
+                    label="Ignored"
+                    variant={ignoredVariant}
+                    onclick={handleStatusClick}>
+                </lightning-button>
+            </lightning-button-group>
+        </div>
+    </div>
+</template>

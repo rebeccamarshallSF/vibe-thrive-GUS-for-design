@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slack - Carolina's Notification</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; height: 100vh; background: #fff; }
+        .slack-sidebar { width: 260px; background: #3f0e40; color: white; padding: 16px; display: flex; flex-direction: column; }
+        .slack-workspace { font-size: 18px; font-weight: 900; margin-bottom: 20px; }
+        .slack-nav-item { padding: 4px 12px; margin: 2px 0; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; color: rgb(209, 210, 211); } 
+        .slack-nav-active { background: #1264a3; color: white; }
+        .channels-header { font-size: 15px; font-weight: bold; color: rgb(209, 210, 211); padding: 4px 12px; margin-top: 20px; margin-bottom: 4px; }
+        .slack-main { flex: 1; display: flex; flex-direction: column; }
+        .slack-header { padding: 12px 24px; border-bottom: 1px solid #e1e5e9; display: flex; justify-content: space-between; align-items: center; }
+        .header-title { font-size: 18px; font-weight: 900; }
+        .slack-message-area { flex: 1; padding: 16px 24px; } 
+        .message-header { display: flex; align-items: center; margin-bottom: 8px; }
+        .bot-icon { width: 36px; height: 36px; background: #36c5f0; border-radius: 8px; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 8px; }
+        .bot-name { font-weight: 900; font-size: 15px; margin-right: 8px; } 
+        .message-time { color: #616061; font-size: 12px; }
+        .message-content p { font-size: 15px; color: #1d1c1d; margin-bottom: 12px; }
+        .epic-card { border: 1px solid #ddd; border-left: 4px solid #0176d3; border-radius: 8px; padding: 16px; background: #f8f9fa; max-width: 600px; }
+        .epic-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .epic-icon { width: 36px; height: 36px; background: #0176d3; border-radius: 4px; }
+        .epic-table { display: grid; grid-template-columns: 130px 1fr; gap: 12px; font-size: 15px; } 
+        .epic-label { color: #616061; } 
+        .epic-value { font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .owner-avatar { width: 24px; height: 24px; background: #1264a3; border-radius: 50%; }
+        .design-lead-select { width: 100%; padding: 6px 8px; border: 1px solid #ccc; border-radius: 4px; background: white; cursor: pointer; font-size: 15px; }
+        .slack-input { border-top: 1px solid #e1e5e9; padding: 20px 24px; }
+        .message-input-box { border: 1px solid #ccc; border-radius: 8px; padding: 12px; color: #616061; }
+        .success-message { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #28a745; color: white; padding: 12px 24px; border-radius: 6px; z-index: 1000; font-size: 16px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="slack-sidebar">
+        <div class="slack-workspace">Vibe & Thrive</div>
+        <div class="slack-nav-item">💬 Threads</div>
+        <div class="slack-nav-item">📫 All DMs</div>
+        <div class="slack-nav-item slack-nav-active">🔔 Mentions & reactions</div>
+        <div class="slack-nav-item">Saved items</div>
+        <div class="channels-header">▼ Channels</div>
+        <div class="slack-nav-item"># teamAwesome</div>
+        <div class="slack-nav-item"># Dev_Collab</div>
+        <div class="slack-nav-item"># core_smarts</div>
+        <div class="slack-nav-item"># GUS BUS</div>
+    </div>
+    <div class="slack-main">
+        <div class="slack-header">
+            <div class="header-title">Mentions and Reactions</div>
+        </div>
+        <div class="slack-message-area">
+            <div class="message-header">
+                <div class="bot-icon">G</div>
+                <span class="bot-name">Gus on Slack</span>
+                <span class="message-time">10:05 AM</span>
+            </div>
+            <div class="message-content">
+                <p>Hello Carolina! You have been assigned as Owner of the following Epic</p>
+                <div class="epic-card" id="epic-card">
+                    <div class="epic-header">
+                        <div class="epic-icon"></div>
+                    </div>
+                    <div class="epic-table">
+                        <div class="epic-label">Epic Name:</div>
+                        <div class="epic-value">Generate and Update Perm Sets</div>
+                        <div class="epic-label">Status:</div>
+                        <div class="epic-value">New</div>
+                        <div class="epic-label">Owner:</div>
+                        <div class="epic-value">
+                            <div class="owner-avatar"></div>
+                            <span>Carolina de Mello e Souza</span>
+                        </div>
+                        <div class="epic-label">Design Lead:</div>
+                        <div class="epic-value">
+                            <select class="design-lead-select" onchange="assignDesignLead(this)">
+                                <option value="">Unassigned</option>
+                                <option value="ron">Ron Hemphill</option>
+                                <option value="sarah">Sarah Chen</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slack-input">
+            <div class="message-input-box">Jot something down</div>
+        </div>
+    </div>
+    <script>
+        function assignDesignLead(select) {
+            // This function will show a success message, then navigate after a 3-second delay.
+            if (select.value === 'ron') {
+                var name = select.options[select.selectedIndex].text;
+                
+                // Remove any existing success message first
+                const existingMsg = document.querySelector('.success-message');
+                if (existingMsg) {
+                    existingMsg.remove();
+                }
+    
+                // Create and show the new success message
+                var msg = document.createElement('div');
+                msg.className = 'success-message';
+                // The text does NOT mention opening a new view.
+                msg.textContent = '✓ ' + name + ' has been assigned as Design Lead.';
+                document.body.appendChild(msg);
+    
+                // Navigate to Ron's page in the SAME tab after a 5-second delay
+                setTimeout(function() {
+                    window.open('/public/assets/ron.html', '_self');
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        }
+    
+        // This adds the clickable logo to the header, providing a manual way to get to Ron's page.
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.querySelector('.slack-header');
+            const logoContainer = document.createElement('div');
+            logoContainer.className = 'slack-logo-container';
+            logoContainer.onclick = function() {
+                 // Open Ron's window in the SAME tab
+                 window.open('/public/assets/ron.html', '_self');
+            };
+            logoContainer.innerHTML = `
+                <style>
+                    .slack-logo-container { position: relative; cursor: pointer; }
+                    .slack-logo-img { width: 28px; height: 28px; }
+                </style>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg" alt="Slack Logo" class="slack-logo-img">
+            `;
+            header.appendChild(logoContainer);
+        });
+    </script>
+</body>
+</html>
